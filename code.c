@@ -166,11 +166,11 @@ void saveBdd(int result){
 	mysql_init(&mysql);
 	
 	char query[70];
-	sprintf(query,"INSERT INTO test (`date`,`result`) VALUES('%s','%d')",tdy,result);
+	sprintf(query,"INSERT INTO vote (`date`,`result`) VALUES('%s','%d')",tdy,result);
 	if(mysql_real_connect(&mysql,"137.74.194.232","remoteAcces","paozie","vote",0,NULL,0)){
  		mysql_query(&mysql, query);
         	mysql_close(&mysql);
-        	printf("Connection succed ! \n");
+        	printf("Insertion %s \n",tdy);
    	}
 	else	{
 		printf("Une erreur s'est produite lors de la connexion à la BDD!\n");
@@ -183,7 +183,7 @@ void wait(int result){
 		temps = 10800 + rand()%120;
 	}
 	else{
-		temps = 600;
+		temps = 300;
 	}
 	
 	while(temps-300>=0){

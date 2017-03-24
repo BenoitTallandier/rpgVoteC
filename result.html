@@ -1,0 +1,335 @@
+<body>
+<html>
+
+<head>
+<script src="//api.dedipass.com/v1/pay.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>Intuition - Serveur Dofus 1.29 SemiLike</title>
+<meta name="description" content="Intuition est un serveur privé Dofus de type SemiLike ! Contrairement à nos concurrant comme Abrak ou bien Serenity, notre but n'est pas de nous enrechir mais de vous offrir la meilleur experience possible." />
+<!--<link href="http://intuitiion.net/site/pages/style.css" rel="stylesheet" type="text/css"/>-->
+<link rel="stylesheet" href="css/Black.css" type="text/css"/>
+<link type="image/x-icon" rel="shortcut icon" href="images/dofus.ico" />
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+function bbcode(bbdebut, bbfin)
+{
+	var input = window.document.formulaire.message;
+	input.focus();
+	if (bbdebut == "lien")
+	{
+		bbdebut = '<a href="';
+		bbfin = '">nom du lien</a>';
+	}
+	if(typeof document.selection != 'undefined')
+	{
+		var range = document.selection.createRange();
+		var insText = range.text;
+		range.text = bbdebut + insText + bbfin;
+		range = document.selection.createRange();
+		if (insText.length == 0)
+		{
+			range.move('character', -bbfin.length);
+		}
+		else
+		{
+			range.moveStart('character', bbdebut.length + insText.length + bbfin.length);
+		}
+		range.select();
+	}
+	else if(typeof input.selectionStart != 'undefined')
+	{
+		var start = input.selectionStart;
+		var end = input.selectionEnd;
+		var insText = input.value.substring(start, end);
+		input.value = input.value.substr(0, start) + bbdebut + insText + bbfin + input.value.substr(end);
+		var pos;
+		if (insText.length == 0)
+		{
+			pos = start + bbdebut.length;
+		}
+		else
+		{
+			pos = start + bbdebut.length + insText.length + bbfin.length;
+		}
+		input.selectionStart = pos;
+		input.selectionEnd = pos;
+	}
+
+	else
+	{
+		var pos;
+		var re = new RegExp('^[0-9]{0,3}$');
+		while(!re.test(pos))
+		{
+			pos = prompt("insertion (0.." + input.value.length + "):", "0");
+		}
+		if(pos > input.value.length)
+		{
+			pos = input.value.length;
+		}
+		var insText = prompt("Veuillez taper le texte");
+		input.value = input.value.substr(0, pos) + bbdebut + insText + bbfin + input.value.substr(pos);
+	}
+}
+function smilies(img)
+{
+	window.document.formulaire.message.value += '' + img + '';
+}
+</script>
+<br><br><br>
+<div id="top"></div>
+
+
+
+
+	<div id="back">
+	<div id="menu_left">  
+	<ul>
+		<div class="titre_left_1"><h1></h1></div>
+		<li><a href="?page=home">Accueil</li></a><img class="line" src="images/img_global/line.png">
+		<li><a href="?page=join">Nous rejoindre</a></li><img class="line" src="images/img_global/line.png">
+		<a href="?page=register"><li><b> Inscription</b></li></a><img class="line" src="images/img_global/line.png">
+		<a href="?page=equipe"><li> L'équipe</li></a><img class="line" src="images/img_global/line.png">
+		<a href="?page=reglement"><li> C.G. d'utilisation</li></a><img class="line" src="images/img_global/line.png">		
+		
+		<div class="titre_left_3"><h1></h1></div>
+		<li><img class="devtoolIcon" style="margin-right: 5px;" src="images/trophy/trophy_1.png">Place libre</li><img class="line" src="images/img_global/line.png">
+			<li><img class="devtoolIcon" style="margin-right: 5px;" src="images/trophy/trophy_2.png">Place libre</li><img class="line" src="images/img_global/line.png">
+			<li><img class="devtoolIcon" style="margin-right: 5px;" src="images/trophy/trophy_3.png">Place libre</li>		<div class="titre_left_2"><h1></h1></div>
+			<a href="index.php?page=statistique"><li> Statistiques</li></a><img class="line" src="images/img_global/line.png">
+			<li><a href="index.php?page=viewdrop">Liste de drops<font style="color:red"> <b>NEW!</b></font></a></li><img class="line" src="images/img_global/line.png">
+			<li><a href="?page=boutique&amp;cat=0">Boutique</a></li><img class="line" src="images/img_global/line.png">
+			<li>Classement<font style="color:red"> <b>NEW!</b></font>
+				<ul class="niveau2">
+					<a href="index.php?page=ladder"><li>Personnages</li></a><img class="line" src="images/img_global/line.png">
+					<a href="index.php?page=ladder_koli"><li>Kolizeum <font style="color:red"> <b>NEW!</b></font></li></a><img class="line" src="images/img_global/line.png">
+					<a href="index.php?page=ladder_guilde"><li>Guildes</li></a><img class="line" src="images/img_global/line.png">
+					<a href="index.php?page=ladder_vote"><li>Votes</li></a>
+				</ul>
+			</li><img class="line" src="images/img_global/line.png">				
+			<li><a target="blank" href="../f/">Forum</a></li><img class="line" src="images/img_global/line.png">
+			<li><a href="index.php?page=teamspeak"> Teamspeak</a></li><img class="line" src="images/img_global/line.png">	
+	</ul>
+</div> 
+
+﻿<div id="menu_right">
+               <ul>
+
+			   <a href="index.php?page=vote"><img class="titre_right_vote" src='images/img_global/vote.png' onmouseover="this.src = 'images/img_global/vote_hover.png';" onmouseout="this.src = 'images/img_global/vote.png';"></a>
+			   
+			    <div class="titre_right_3"><h1></h1></div>
+				<a href="?page=gest_compte&p=mon_compte"><li>Mon profil</li></a>
+				<img class="line" src="images/img_global/line.png"/>
+			<a href="?page=achat"><li>Mes Points (<b><small> 880</small></b>)</li></a><img class="line-right" src="images/img_global/line.png"/>
+			<a href="?page=myperso"><li>Mon personnage</li></a><img class="line-right" src="images/img_global/line.png"/>
+
+			<a href="?page=vip"><li><b>V.I.P (Rang 3)</b></li></a><img class="line-right" src="images/img_global/line.png"/>
+			<a href=" ?page=boutique&cat=0"><li>Boutique</li></a><img class="line-right" src="images/img_global/line.png"/>
+			            <a href="?page=logout"><li>D&eacute;connexion</li></a><img class="line-right" src="images/img_global/line.png"/>
+
+			
+<div class="titre_right_2"><h1></h1></div>
+<div id="menu_right_status">
+		<li>Connexion <font color=green>Disponible</font></li><img class="line-right" src="images/img_global/line.png"/><li>Serveur <font color=green>Disponible</font></li><img class="line-right" src="images/img_global/line.png"/><li><b>0j 10h 2m </b> d'uptime</li><img class="line-right" src="images/img_global/line.png"/>                <li class='textbarre'>
+                    <span>29</span> joueurs connectés<br>
+                </li>
+
+
+
+
+	</ul>
+</div>
+		<DIV id="content">
+		<script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="jquery.galleryview-1.1.js"></script>
+<script type="text/javascript" src="jquery.timers-1.1.2.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+$('#photos').galleryView({
+panel_width: 470,
+panel_height: 220,
+transition_speed: 200,
+transition_interval: 4500,
+overlay_height:0,
+overlay_font_size:10,
+nav_theme: 'dark',
+border: '1px solid #b8a77e', 
+pause_on_hover: true,
+show_captions: false,
+background_color: 'white'
+
+});
+});
+
+</script>
+
+	<link href="./pages/css/style.css" rel="stylesheet" />
+		
+
+
+	<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="/cdn/css/ie.css" />
+	<![endif]--><!--
+	<script src="http://www.radionomy.com/cdn/js/jquery-1.7.2.js" type="text/javascript"></script>
+	<script src="http://www.radionomy.com/cdn/js/colorbox.js"></script>
+	<script src="http://www.radionomy.com/cdn/js/bootstrap-dropdown.js"></script>
+	<script src="http://www.radionomy.com/cdn/js/Common.js?635300040669343259"></script>
+	<script src="http://www.radionomy.com/cdn/js/jquery.jplayer.js"></script>
+	<script src="http://www.radionomy.com/cdn/js/jcarousel.js"></script>
+	<script src="http://www.radionomy.com/cdn/js/Analytics.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var _language = "fr";
+	</script>
+	<div>
+		
+<script type="text/javascript">
+	var _hasFavorites = true;
+	var _favLanguage = 'fr';
+	var _favContactUID = '5b87ed77c01942b7a49cac0d48451ceb';
+	$(document).ready(function () {
+		$("#closeIMU").click(function () {
+			$("#imuPlayer").hide();
+		});
+	});
+</script>
+<script src="http://www.radionomy.com/cdn/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://intuitiion.net/site/include/Player.js?635300040669343259"></script>
+<div class="bottom_fixed" style="display: none" id="sitePlayer">
+	<div class="player">
+			<div id="imuPlayer" style="display: none">
+				<div class="clearfix">
+					<div class="banner">
+						<div class="close_btn"><a id="closeIMU" href="#" title="Close"><i class="icon-remove icon-white"></i></a></div>
+						<div class="container">
+							<div class="offset2">
+								<div id="imuPlayerContent"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bg"></div>
+			</div>
+		<div class="container">
+			<div style="width:164px !important">
+				<ul class="controls-buttons">
+					<li class="play"><a href="#" onclick="return PlayPause();"><span id="aPlayPause">Play</span></a></li>
+				</ul>
+			</div>
+			<div style="position: relative; width:100%">
+				<div id="volume" title="Volume"></div>
+			</div>
+			<div class="grid4 radio-info">
+				<a href="#" id="lnkRadio" rel="internal">
+					<h2 class="radio-title" id="radioTitle"></h2>
+				</a>
+				<ul class="status">
+					
+					<li class="popularity">
+						<span class="-n1" id="popularity"></span>
+					</li>
+				</ul>
+				<div class="sub_cover">
+					<img alt="cover_track" src="http://www.radionomy.com/cdn/img/defaultcover.png" class="cover_track" id="coverTrack">
+					<p><strong id="artist-name"></strong><br /><span id="track-name"></span></p>
+				</div>
+			</div>
+			<div class="grid3">
+				<ul class="share-box">
+					<li><a href="#" class="add-favorite-player" id="favoriteRadio" title="Ajouter aux favoris"></a></li>
+					<li><a href="#" class="share-facebook-player" id="shareFB" title="Partager sur Facebook" target="_blank"></a></li>
+					<li><a href="#" class="share-twitter-player" id="shareTwitter" title="Partager sur Twitter" target="_blank"></a></li>
+					<li><a href="#" class="embed-player" id="detachRadio" title="D&#233;tacher le lecteur"></a></li>
+				</ul>
+			</div>
+		</div>
+		<a href="#" class="close_btn" id="closePlayer">Fermer</a>
+	</div>
+</div>
+<div id="containerHidden"></div>
+<div style="display:none"><img id="pixHidden" /></div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			setTimeout(function () {
+				PlayRadio('intuitionradio', '36f0adee-661e-4611-b251-b30d1ef0e5c0', true);
+				_isDetach = true;
+			}, 1000);			
+		})
+	</script><-->
+
+﻿<img class="img_top" src="images/img_content/top_content.png"/>
+	<DIV id="content_content">
+		<div id="content_text">
+			<br>
+			<center><img src="images/img_ban/img_vote.png"/></center><hr>
+			<script type="text/javascript">
+function sendVote()
+{
+    var x = setTimeout(function() {  document.getElementById("out").disabled = false; }, 5000);
+}
+</script>		
+<center>	
+<!--<b style="color:red">RPG PARADIZE N'EST PLUS DISPONIBLE POUR LE MOMENT, PAR CONSEQUENT IL EST IMPOSSIBLE DE VOTER.</b>
+--><br /><br />	
+				En étant dans les 5 meilleurs voteur de la semaine, 
+				<br/>vous remporterez de nombreuses récompenses. <br />
+				<b> Voici la liste des récompenses :</b><br /><br />
+				<table style="margin:auto;width:100%;text-align:center;">
+				<tr>
+				<td style="text-align:center;background:#505050;font-weight:bold;"colspan="3">Premier</td>
+				</tr>
+				<tr><td>6 runes GA PA</td><td>250 Points Boutique</td><td>250 000K</td></tr>
+				<tr>
+				<td style="text-align:center;background:#505050;font-weight:bold;"colspan="3">Deuxieme</td>
+				</tr>
+				<tr><td>4 runes GA PA</td><td colspan="1">200 Points Boutique</td><td>180 000K</td></tr>
+				<tr>
+				<td style="text-align:center;background:#505050;font-weight:bold;"colspan="3">Troisième</td>
+				</tr>
+				<tr><td>3 runes GA PA</td><td colspan="1">150 Points Boutique</td><td>150 000K</td></tr>
+				<tr>
+				<td style="text-align:center;background:#505050;font-weight:bold;"colspan="3">Quatrième</td>
+				</tr>
+				<tr><td>2 runes GA PA</td><td colspan="1">100 Points Boutique</td><td>120 000K</td></tr>
+				<tr>
+				<td style="text-align:center;background:#505050;font-weight:bold;"colspan="3">Cinquième</td>
+				</tr>
+				<tr><td>1 runes GA PA</td><td colspan="1">50 Points Boutique</td><td>100 000K</td></tr>
+				</table><br><br />
+				<center>
+				<fieldset><center><b>Notre nouveau système de vote a été mis en place.</b><br /><br />Si vous avez des difficulté pour voter, ou bien que vous ne comprenez pas le fonctionnement,
+				un tutoriel conçernant celui-ci à été mis en place sur le forum. Vous pouvez vous y rendre en cliquant sur l'URL ci-dessous :<br /><br />
+				<a href='http://versus-games.fr/f/index.php?/topic/774-new-mise-en-place-du-nouveau-syst%C3%A8me-de-vote/''><b>[New] Mise en place du nouveau système de Vote.</b></a>
+				</center></fieldset><br /><div class='verifOK'><center>Nous sommes en event vote !<br />Bénéficiez du double de points supplémentaires à chaque vote !<br /><br />
+						Précipite toi donc pour voter.
+						</center></div><br />
+					<!-- <center><b>Chaque vote vous fera gagner la somme de 20 points, ou 30 si vous &ecirc;tes V.I.P ce qui n'est pas n&eacute;gligeable.
+					<br>Pour devenir vip, vous n'avez qu'&agrave; suivre ce lien en cliquant : <a href="index.php?page=vip"> > - < </a></b><br><br> -->
+					<!-- <meta http-equiv='refresh' content='0; URL=http://www.rpg-paradize.com/?page=vote&vote=107827'> -->
+
+				137.74.194.232<div class='verifNO'><center><img class='devtoolIcon' src='images/devtool/error.png'> Vous avez déjà voté avec cette ip !<br /><br />
+							En gardant cette ip, tu ne pourras pas revoter avant 25 minutes.
+							</center></div>
+             <br>
+        </div>
+	</div>
+<img class="img_bottom" src="images/img_content/bottom_content.png"/>
+		</DIV>
+	</div>
+	<div id="bottom"></div>
+	</body>
+</html>
